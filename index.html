@@ -14,29 +14,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a1512;
-    --bg-elevated:#0f1e19;
-    --card:#122720;
-    --card-border:#1e3a30;
-    --teal:#1fbf8f;
-    --teal-bright:#3ee6ac;
-    --profit:#3ee6ac;
-    --loss:#ef5a5a;
-    --text:#eef5f1;
-    --text-dim:#7fa393;
-    --text-faint:#4d6a5e;
+    --bg:#0a1512; --bg-elevated:#0f1e19; --card:#122720; --card-border:#1e3a30;
+    --teal:#1fbf8f; --teal-bright:#3ee6ac; --profit:#3ee6ac; --loss:#ef5a5a;
+    --text:#eef5f1; --text-dim:#7fa393; --text-faint:#4d6a5e;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0;
-    font-family:'Vazirmatn',Tahoma,sans-serif;
-    background:
-      radial-gradient(circle at 50% -10%, rgba(31,191,143,0.12), transparent 60%),
-      var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    padding:24px 16px 60px;
-    -webkit-tap-highlight-color:transparent;
+    margin:0; font-family:'Vazirmatn',Tahoma,sans-serif;
+    background:radial-gradient(circle at 50% -10%, rgba(31,191,143,0.12), transparent 60%), var(--bg);
+    color:var(--text); min-height:100vh; padding:24px 16px 60px; -webkit-tap-highlight-color:transparent;
   }
   .wrap{max-width:460px;margin:0 auto;}
   .brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;}
@@ -50,10 +36,7 @@
   h1{text-align:center;font-size:19px;font-weight:700;margin:0 0 26px;letter-spacing:.2px;}
   h1 span{color:var(--text-dim);font-weight:400;font-size:14px;display:block;margin-top:3px;}
 
-  .gauge-card{
-    background:var(--card);border:1px solid var(--card-border);border-radius:20px;
-    padding:22px 20px 20px;margin-bottom:16px;position:relative;overflow:hidden;
-  }
+  .gauge-card{background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:22px 20px 20px;margin-bottom:16px;position:relative;overflow:hidden;}
   .gauge-label{font-size:12px;color:var(--text-dim);margin-bottom:8px;display:flex;justify-content:space-between;}
   .gauge-track{height:14px;border-radius:8px;background:#0b1a15;border:1px solid var(--card-border);position:relative;overflow:hidden;margin:10px 0 12px;}
   .gauge-mid{position:absolute;top:0;bottom:0;right:50%;width:1px;background:var(--text-faint);}
@@ -62,11 +45,13 @@
   .pl-value{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;}
   .pl-pct{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;color:var(--text-dim);}
 
-  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-  .stat{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px;}
-  .stat .k{font-size:11.5px;color:var(--text-dim);margin-bottom:6px;}
-  .stat .v{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;}
-  .stat .v small{font-family:'Vazirmatn';font-size:11px;color:var(--text-dim);font-weight:400;margin-right:4px;}
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+  .stats.three{grid-template-columns:1fr 1fr 1fr;}
+  .stat{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:14px 10px;}
+  .stat .k{font-size:11px;color:var(--text-dim);margin-bottom:6px;}
+  .stat .v{font-family:'JetBrains Mono',monospace;font-size:15.5px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .stat .v small{font-family:'Vazirmatn';font-size:10.5px;color:var(--text-dim);font-weight:400;margin-right:3px;}
+  .stat.margin-top{margin-bottom:16px;}
 
   .card{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:18px;margin-bottom:14px;}
   .card-title{font-size:13px;font-weight:700;color:var(--teal-bright);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
@@ -75,10 +60,13 @@
   label{display:block;font-size:12.5px;color:var(--text-dim);margin-bottom:6px;}
   .field{margin-bottom:12px;}
   .field:last-of-type{margin-bottom:0;}
+  .row{display:flex;gap:8px;}
+  .row .field{flex:1;}
   input{
     width:100%;background:var(--bg-elevated);border:1px solid var(--card-border);color:var(--text);
     font-family:'JetBrains Mono',monospace;font-size:15px;padding:11px 12px;border-radius:10px;outline:none;transition:border-color .2s;
   }
+  input[type=text]{font-family:'Vazirmatn';}
   input:focus{border-color:var(--teal);}
   input::placeholder{color:var(--text-faint);font-family:'Vazirmatn';}
 
@@ -90,6 +78,19 @@
   button:hover{filter:brightness(1.08);}
   button:active{transform:scale(.98);}
   button.secondary{background:transparent;border:1px solid var(--card-border);color:var(--text-dim);margin-top:8px;}
+
+  .tx-list{margin-top:14px;border-top:1px solid var(--card-border);padding-top:10px;}
+  .tx-day{font-size:11.5px;color:var(--teal-bright);font-weight:700;margin:10px 0 6px;}
+  .tx-item{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:9px 4px;border-bottom:1px solid var(--card-border);font-size:13.5px;
+  }
+  .tx-item:last-child{border-bottom:0;}
+  .tx-item .note{color:var(--text-dim);font-size:12px;}
+  .tx-item .amt{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--profit);}
+  .tx-item .del{color:var(--loss);font-size:12px;cursor:pointer;padding:2px 8px;}
+  .tx-empty{color:var(--text-faint);font-size:12.5px;text-align:center;padding:10px 0;}
+  .day-total{font-size:12px;color:var(--text-dim);text-align:left;margin-top:2px;}
 
   .footnote{text-align:center;font-size:11px;color:var(--text-faint);margin-top:20px;}
 
@@ -112,7 +113,7 @@
 <body>
 <div class="wrap">
   <div class="brand"><div class="mark">₮</div></div>
-  <h1>مدیریت سرمایه تتر<span>ثبت سرمایه، پایش سود و زیان</span></h1>
+  <h1>مدیریت سرمایه تتر<span>ثبت فروش روزانه و پایش سود و زیان</span></h1>
 
   <div class="install-hint" id="installHint">
     برای نصب روی گوشی: در مرورگر روی منو (⋮) بزنید و <b>«افزودن به صفحه اصلی»</b> یا <b>«Install App»</b> را انتخاب کنید.
@@ -130,9 +131,14 @@
     </div>
   </div>
 
-  <div class="stats">
-    <div class="stat"><div class="k">سرمایه اولیه</div><div class="v" id="statInit">۰ <small>افغانی</small></div></div>
-    <div class="stat"><div class="k">تعداد تتر</div><div class="v" id="statTether">۰ <small>USDT</small></div></div>
+  <div class="stats three">
+    <div class="stat"><div class="k">سرمایه فعلی</div><div class="v" id="statCurrent">۰ <small>افغانی</small></div></div>
+    <div class="stat"><div class="k">اصل سرمایه</div><div class="v" id="statPrincipal">۰ <small>افغانی</small></div></div>
+    <div class="stat"><div class="k">سود خالص</div><div class="v" id="statProfit">۰ <small>افغانی</small></div></div>
+  </div>
+  <div class="stats margin-top">
+    <div class="stat"><div class="k">سرمایه اولیه ثبت‌شده</div><div class="v" id="statInit">۰ <small>افغانی</small></div></div>
+    <div class="stat"><div class="k">تتر معادل سرمایه فعلی</div><div class="v" id="statTether">۰ <small>USDT</small></div></div>
   </div>
 
   <div class="card">
@@ -143,11 +149,17 @@
   </div>
 
   <div class="card">
-    <div class="card-title">به‌روزرسانی ارزش فعلی</div>
-    <div class="field"><label>ارزش فعلی سرمایه (افغانی)</label><input id="v" type="number" placeholder="مثال: ۵۸۰۰۰"></div>
-    <button onclick="calc()">محاسبه سود / زیان</button>
-    <button class="secondary" onclick="resetAll()">پاک کردن همه اطلاعات</button>
+    <div class="card-title">ثبت فروش امروز</div>
+    <div class="row">
+      <div class="field"><label>مبلغ (افغانی)</label><input id="txAmount" type="number" placeholder="مثال: ۵۰۰"></div>
+      <div class="field"><label>نام مشتری (اختیاری)</label><input id="txNote" type="text" placeholder="مثال: احمد"></div>
+    </div>
+    <button onclick="addTx()">افزودن فروش</button>
+
+    <div class="tx-list" id="txList"></div>
   </div>
+
+  <button class="secondary" onclick="resetAll()">پاک کردن همه اطلاعات</button>
 
   <div class="footnote">اطلاعات فقط داخل همین گوشی ذخیره می‌شود، حتی بدون اینترنت</div>
 </div>
@@ -155,19 +167,39 @@
 <div class="toast" id="toast"></div>
 
 <script>
-let d = { i: 0, t: 0, v: 0 };
+// d.i = initial capital (AF), d.t = initial tether count, d.tx = [{date:'YYYY-MM-DD', amount, note, ts}]
+let d = { i: 0, t: 0, tx: [] };
 
 function fmt(n){ return Math.round(n).toLocaleString('fa-IR'); }
+function todayKey(){
+  const now = new Date();
+  return now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+}
+function faDate(key){
+  try{
+    const [y,m,dd] = key.split('-').map(Number);
+    const dt = new Date(y,m-1,dd);
+    return dt.toLocaleDateString('fa-IR', { year:'numeric', month:'long', day:'numeric' });
+  }catch(e){ return key; }
+}
 
 function load(){
   try{
-    const raw = localStorage.getItem('cap');
+    const raw = localStorage.getItem('cap_v2');
     if(raw) d = JSON.parse(raw);
+    else{
+      // migrate from old single-value version if present
+      const old = localStorage.getItem('cap');
+      if(old){
+        const o = JSON.parse(old);
+        d = { i: o.i||0, t: o.t||0, tx: [] };
+      }
+    }
   }catch(e){}
   render();
 }
 function persist(){
-  try{ localStorage.setItem('cap', JSON.stringify(d)); }catch(e){}
+  try{ localStorage.setItem('cap_v2', JSON.stringify(d)); }catch(e){}
 }
 
 function showToast(msg){
@@ -186,32 +218,52 @@ function saveInit(){
   showToast('سرمایه اولیه ذخیره شد');
 }
 
-function calc(){
-  const vVal = +document.getElementById('v').value;
-  if(!vVal){ showToast('ارزش فعلی را وارد کنید'); return; }
-  d.v = vVal;
+function addTx(){
+  const amt = +document.getElementById('txAmount').value;
+  const note = document.getElementById('txNote').value.trim();
+  if(!amt){ showToast('مبلغ را وارد کنید'); return; }
+  d.tx.push({ date: todayKey(), amount: amt, note: note, ts: Date.now() });
+  persist();
+  document.getElementById('txAmount').value = '';
+  document.getElementById('txNote').value = '';
+  render();
+  showToast('فروش ثبت شد');
+}
+
+function deleteTx(ts){
+  d.tx = d.tx.filter(x => x.ts !== ts);
   persist(); render();
 }
 
 function resetAll(){
-  d = { i: 0, t: 0, v: 0 };
+  d = { i: 0, t: 0, tx: [] };
   persist();
   document.getElementById('i').value = '';
   document.getElementById('t').value = '';
-  document.getElementById('v').value = '';
   render();
   showToast('اطلاعات پاک شد');
 }
 
 function render(){
   document.getElementById('statInit').innerHTML = fmt(d.i) + ' <small>افغانی</small>';
-  document.getElementById('statTether').innerHTML = fmt(d.t) + ' <small>USDT</small>';
 
-  const p = d.v - d.i;
+  const totalSales = d.tx.reduce((s,x)=>s+x.amount, 0);
+  const currentCapital = totalSales; // running capital built from recorded sales
+  const p = currentCapital - d.i;
   const pct = d.i ? (p / d.i * 100) : 0;
   const profitable = p >= 0;
+  const principalRecovered = d.i ? Math.min(currentCapital, d.i) : 0;
+  const profit = p; // can be negative (loss)
+  const rate = (d.i && d.t) ? d.i / d.t : 0;
+  const tetherEquivalent = rate ? currentCapital / rate : 0;
 
-  document.getElementById('plValue').textContent = (profitable ? '+' : '') + fmt(p) + ' افغانی';
+  document.getElementById('statCurrent').innerHTML = fmt(currentCapital) + ' <small>افغانی</small>';
+  document.getElementById('statPrincipal').innerHTML = fmt(principalRecovered) + ' <small>افغانی</small>';
+  document.getElementById('statProfit').innerHTML = (profit>=0?'+':'') + fmt(profit) + ' <small>افغانی</small>';
+  document.getElementById('statProfit').style.color = profit>=0 ? 'var(--profit)' : 'var(--loss)';
+  document.getElementById('statTether').innerHTML = fmt(tetherEquivalent) + ' <small>USDT</small>';
+
+  document.getElementById('plValue').textContent = (profitable ? '+' : '') + fmt(profit) + ' افغانی';
   document.getElementById('plValue').style.color = profitable ? 'var(--profit)' : 'var(--loss)';
   document.getElementById('plPct').textContent = (profitable ? '+' : '') + pct.toFixed(1) + '٪';
 
@@ -221,7 +273,37 @@ function render(){
   if(profitable){ fill.style.right='50%'; fill.style.left='auto'; fill.style.width=widthPct+'%'; }
   else{ fill.style.left='50%'; fill.style.right='auto'; fill.style.width=widthPct+'%'; }
 
-  document.getElementById('asOf').textContent = d.v ? 'به‌روز' : 'ثبت نشده';
+  document.getElementById('asOf').textContent = d.tx.length ? 'به‌روز' : 'ثبت نشده';
+
+  renderTxList();
+}
+
+function renderTxList(){
+  const container = document.getElementById('txList');
+  if(!d.tx.length){
+    container.innerHTML = '<div class="tx-empty">هنوز فروشی ثبت نشده</div>';
+    return;
+  }
+  // group by date, newest day first, newest item first within a day
+  const groups = {};
+  d.tx.forEach(x => { (groups[x.date] = groups[x.date] || []).push(x); });
+  const dates = Object.keys(groups).sort().reverse();
+
+  let html = '';
+  dates.forEach(date => {
+    const items = groups[date].slice().sort((a,b)=>b.ts-a.ts);
+    const dayTotal = items.reduce((s,x)=>s+x.amount,0);
+    html += '<div class="tx-day">' + faDate(date) + '</div>';
+    items.forEach(x => {
+      html += '<div class="tx-item">' +
+        '<span class="note">' + (x.note ? x.note : 'بدون نام') + '</span>' +
+        '<span class="amt">+' + fmt(x.amount) + '</span>' +
+        '<span class="del" onclick="deleteTx(' + x.ts + ')">حذف</span>' +
+      '</div>';
+    });
+    html += '<div class="day-total">جمع روز: ' + fmt(dayTotal) + ' افغانی</div>';
+  });
+  container.innerHTML = html;
 }
 
 if('serviceWorker' in navigator){
@@ -230,7 +312,6 @@ if('serviceWorker' in navigator){
   });
 }
 
-// Show manual install hint on iOS (no beforeinstallprompt support there)
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 if(isIOS && !isStandalone){
